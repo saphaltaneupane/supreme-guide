@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Home</title>
+
 </head>
 <body>
-  <h1>Welcome</h1>
-  <hr>
-  <a href="/department">AddDepartment</a><a href="departmentList">Department List</a>
+
+<th:block th:insert="Header.html"></th:block>
+ 
 </body>
 </html>
