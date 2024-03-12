@@ -14,24 +14,26 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class UploadController {
-	@GetMapping("/upload")
 	
- public String getUpload() {
-	 return "UploadForm";
- }
+	@GetMapping("/upload")
+  public String getUpload() {
+	  return "UploadForm";
+  }
 	@PostMapping("/upload")
-	public String postUpload(@RequestParam  MultipartFile image, Model model) {
+	public String postUpload(@RequestParam MultipartFile image, Model model) {
 		if(!image.isEmpty()) {
 			try {
-				Files.copy(image.getInputStream(),Path.of("src/main/resources/static/image"+image.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-				model.addAttribute("message","upload success");
+				Files.copy(image.getInputStream(), Path.of("src/main/resources/static/image/"+image.getOriginalFilename()),StandardCopyOption.REPLACE_EXISTING);
+				model.addAttribute("message", "upload successful");
 				return "UploadForm";
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
 		}
-		model.addAttribute("message","upload failed");
+		model.addAttribute("message", "upload failed");
 		return "UploadForm";
 	}
 }
