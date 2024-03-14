@@ -12,7 +12,8 @@ import com.bway.springproject.model.User;
 import com.bway.springproject.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
-
+import lombok.extern.java.Log;
+@Log
 @Controller
 public class UserController {
 	@Autowired
@@ -26,6 +27,7 @@ public class UserController {
 		user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
 		User usr = userService.userLogin(user.getEmail(), user.getPassword());
 		if(usr!=null) {
+			log.info("user login success");
 			session.setAttribute("validuser", usr);
 			session.setMaxInactiveInterval(120);// 2mins samma chalayena baney logout
 			
@@ -33,6 +35,7 @@ public class UserController {
 			
 			return "Home";
 		}
+		log.info("-------- login failed---------");
 		model.addAttribute("error","user not found");
 		return "LoginForm";
 	}
@@ -48,6 +51,7 @@ public class UserController {
 	}
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
+		log.info("------logout success----------");
 		session.invalidate();
 		return "LoginForm";
 	}
