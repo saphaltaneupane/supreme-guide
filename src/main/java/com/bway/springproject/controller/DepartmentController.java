@@ -14,13 +14,18 @@ import com.bway.springproject.service.DepartmentService;
 import com.bway.springproject.utils.DepartmentExcelView;
 import com.bway.springproject.utils.DepartmentPdfView;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 
 public class DepartmentController {
 	@Autowired
 	private DepartmentService deptService;
 	@GetMapping("/department")
-  public String getDepartment() {
+  public String getDepartment(HttpSession session) {
+		if(session.getAttribute("validuser")== null) {
+			return "LoginForm";
+		}
 	  return "DepartmentForm";
   }
 	@PostMapping("/department")

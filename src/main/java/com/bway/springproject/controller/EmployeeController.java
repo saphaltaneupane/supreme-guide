@@ -11,6 +11,8 @@ import com.bway.springproject.model.Employee;
 import com.bway.springproject.service.DepartmentService;
 import com.bway.springproject.service.EmployeeService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class EmployeeController {
 	
@@ -19,7 +21,10 @@ public class EmployeeController {
 	@Autowired
 	private DepartmentService deptService;
 	@GetMapping("/employee")
-   public String getEmployee(Model model) {
+   public String getEmployee(Model model,HttpSession session) {
+		if(session.getAttribute("validuser")== null) {
+			return "LoginForm";
+		}
 		model.addAttribute("dList", deptService.getAllDepts());
 	   return "EmployeeForm";
    }

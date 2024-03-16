@@ -8,13 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bway.springproject.utils.MailUtils;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class ContactController {
 	@Autowired
 	private MailUtils mailUtil;
 	
 	@GetMapping("/contact")
-  public String getContact() {
+  public String getContact(HttpSession session) {
+		if(session.getAttribute("validuser")== null) {
+			return "LoginForm";
+		}
 	  return "ContactForm";
   }
 	@PostMapping("/contact")
