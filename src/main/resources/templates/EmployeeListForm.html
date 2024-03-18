@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employeelist</title>
+
+</head>
+
+<body>
+<th:block th:insert="Header.html"></th:block>
+<div class="container-fluid">
+    <div class="card">
+    <div class="card-header bg-primary text-center text-white">
+  
+    <h5>Employee List</h5></div>
+    <div class="card-body">
+    <table class="table">
+    <a href="/emp/excel">  <input type="submit" value="Excel"  class="btn btn-success"></a>
+   
+   <a href="/emp/pdf"><input type="submit" value="Pdf"  class="btn btn-primary"></a> 
+    </div>
+    <thead>
+    <tr>
+    <th>ID</th>
+    <th>First  Name</th>
+    <th>Last Name</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e:${eList}">
+    <td>[[${e.id}]]</td>
+    <td>[[${e.fname}]]</td>
+    <td>[[${e.lname}]]</td>
+    <td>
+   <a th:href="@{/emp/edit(id=${e.id})}"><input type="submit" value="Edit" class="btn btn-success"></a> 
+  <a th:href="@{/emp/delete(id=${e.id})}"><input type="submit" value="Delete" class="btn btn-danger"></a>  
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="card-footer bg-warning text-center">
+    copyright@2024</div>
+    </div>
+    </div>
+</body>
+</html>

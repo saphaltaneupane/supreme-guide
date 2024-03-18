@@ -12,6 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
+VerifyRecaptcha.java
 
 ### IntelliJ IDEA ###
 .idea
